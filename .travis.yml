@@ -7,6 +7,7 @@ env:
   - "DATABASE_ADAPTER=mysql-5.5"
   - "DATABASE_ADAPTER=mysql-5.6"
   - "DATABASE_ADAPTER=mysql-5.7"
+  - "DATABASE_ADAPTER=mysql-8.0"
   - "DATABASE_ADAPTER=mariadb-10.0"
 before_install:
   - "sudo apt-get update -qq"

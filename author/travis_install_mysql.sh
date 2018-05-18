@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-if [[ $DATABASE_ADAPTER =~ (mariadb|mysql-5\.[567]) ]]; then
+if [[ $DATABASE_ADAPTER =~ (mariadb|mysql-(5\.[567]|8\.[0])) ]]; then
   sudo service mysql stop
   sudo apt-get install python-software-properties
   if [[ $DATABASE_ADAPTER =~ mariadb ]]; then
@@ -10,7 +10,7 @@ if [[ $DATABASE_ADAPTER =~ (mariadb|mysql-5\.[567]) ]]; then
     sudo apt-get update
     sudo DEBIAN_FRONTEND=noninteractive apt-get -q --yes --force-yes -f --option DPkg::Options::=--force-confnew install mariadb-server
     sudo apt-get install libmariadbd-dev
-  elif [[ $DATABASE_ADAPTER =~ mysql-5\.[67] ]]; then
+  elif [[ $DATABASE_ADAPTER =~ mysql-(5\.[67]|8\.[0]) ]]; then
     cat <<EOC | sudo debconf-set-selections
 mysql-apt-config mysql-apt-config/select-server select $DATABASE_ADAPTER
 mysql-apt-config mysql-apt-config/repo-distro   select  ubuntu
